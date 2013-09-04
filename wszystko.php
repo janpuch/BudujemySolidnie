@@ -2,7 +2,7 @@
 <?php
 
 require 'common/db.php';
-require 'common/admin_sesja.php';
+require 'common/sesja.php';
 db_polacz();
 
 if(! sesja_czy_zalogowany_admin())
