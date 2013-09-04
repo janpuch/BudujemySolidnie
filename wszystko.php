@@ -7,29 +7,29 @@ db_polacz();
 
 if(! sesja_czy_zalogowany_admin())
 {
-    Header('Location: wszystko.php');
+    Header('Location: index.php');
 }
 
-?><html>
-    <table>
+$title = "Spis zamówień";
+
+$content = '<table>
         <!-- tr = wiersz tabeli -->
         <tr>
             <!-- td = komorka tabeli -->
             <th>Id zamowienia</th>
             <th>Klient</th>
             <th>Wszystko</th>
-        </tr>
+        </tr>';
         
-        <?php foreach(db_lista_zamowien() as $zamowienie)
-        {?>
-        <tr>
-            <td><?php echo $zamowienie['id']; ?></td>
-            <td><?php echo $zamowienie['nazwisko'].' '.$zamowienie['imie']; ?></td>
-            <td><?php echo $zamowienie['cena']; ?></td>
+foreach(db_lista_zamowien() as $zamowienie)
+{
+  $content .='<tr>
+            <td>'. $zamowienie['id'].'</td>
+            <td>'.$zamowienie['nazwisko'].' '.$zamowienie['imie'].'</td>
+            <td>'. $zamowienie['cena'].'</td>
                
             <td><?php var_dump($zamowienie); ?></td>
-        </tr>
-        <?php } ?>
-    </table>
-   
-</html>
+        </tr>';
+}
+
+include 'szablony/klient.php';

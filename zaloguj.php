@@ -1,5 +1,4 @@
-﻿<?php header('Content-Type: text/html; charset=utf-8'); ?>
-<?php
+﻿<?php header('Content-Type: text/html; charset=utf-8');
 
 require 'common/db.php';
 require 'common/sesja.php';
@@ -16,10 +15,10 @@ $title = "Logowanie";
 if(! $_POST)
 {
   $content='<form action="zaloguj.php" method="POST">
-            <th>Email:</th>
-            <input name="email" />
-            <th>Hasło:</th>
-            <input type="password" name="haslo" />
+            <label for="email">Email:</label>
+            <input name="email" /></br>
+            <label for="password">Hasło:</label>
+            <input type="password" name="haslo" /></br>
             <input type="submit" />
         </form>';
   include 'szablony/gosc.php';	  
