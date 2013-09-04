@@ -11,17 +11,31 @@ if(sesja_czy_zalogowany())
     exit;
 }
 
-?>
-<html>
-    <body>
-        <a href="zaloguj.php">Zaloguj się</a>
-        <a href="zarejestruj.php">Zarejestruj się</a>
-        <form action="zaloguj2.php" method="POST">
+$title = "Logowanie";
+
+if(! $_POST)
+{
+  $content='<form action="zaloguj.php" method="POST">
             <th>Email:</th>
             <input name="email" />
             <th>Hasło:</th>
             <input type="password" name="haslo" />
             <input type="submit" />
-        </form>
-    </body>
-</html>
+        </form>';
+  include 'szablony/gosc.php';	  
+}
+else
+{
+  $uzytkownik = db_zaloguj($_POST['email'], $_POST['haslo']);
+
+  if(! $uzytkownik)
+  {
+    $content='<h2>Niepoprawne dane logowania.</h2>';
+    include 'szablony/gosc.php';	  
+  }
+  else
+  {
+      sesja_zaloguj($uzytkownik);
+      header('Location: historia.php');
+  }
+}
